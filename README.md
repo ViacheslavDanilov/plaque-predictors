@@ -1,8 +1,5 @@
 <div align="center">
 
-
-<img src=".assets/logo.png" width="200" alt="Plaque Predictors Logo">
-
 # 🫀 Plaque Predictors: Cardiac Risk Analysis
 
 [![Python 3.13](https://img.shields.io/badge/Python-3.13-blue.svg)](https://www.python.org/downloads/)
@@ -37,7 +34,8 @@ plaque-predictors/
 │   ├── notebooks/                  # Jupyter notebooks (EDA, experiments)
 │   ├── scripts/                    # Training & preprocessing scripts
 │   ├── data/                       # Datasets
-│   │   └── source.csv              # Primary dataset (56 records)
+│   │   ├── source.csv              # Processed English dataset (56 records)
+│   │   └── source_ru.csv           # Original Russian dataset
 │   └── pyproject.toml              # Backend dependencies
 │
 ├── frontend/                       # ⚛️ Next.js Frontend
@@ -60,30 +58,30 @@ The `source.csv` dataset contains 56 clinical records with the following key fea
 ### Clinical Data
 | Feature | Description |
 |---------|-------------|
-| `пол` | Gender (м/ж) |
-| `Возраст` | Age |
-| `Стенокардия ФК` | Angina Functional Class |
-| `ПИКС` | Post-myocardial infarction syndrome |
-| `МФА` | Multi-focal atherosclerosis |
-| `СД` | Diabetes Mellitus |
-| `АГ` | Hypertension |
-| `Холестерин` | Cholesterol levels |
+| `gender` | Patient gender (male/female) |
+| `age` | Patient age |
+| `angina_functional_class` | Angina Functional Class (CCS) |
+| `post_infarction_cardiosclerosis` | History of post-myocardial infarction |
+| `multifocal_atherosclerosis` | Presence of multifocal atherosclerosis |
+| `diabetes_mellitus` | Diabetes Mellitus indicator |
+| `hypertension` | Hypertension (High Blood Pressure) indicator |
+| `cholesterol_level` | Total cholesterol levels |
 
 ### Plaque Morphology
 | Feature | Description |
 |---------|-------------|
-| `Нестабильная бляшка` | Plaque Stability (1 = Unstable, 0 = Stable) |
-| `Объем бляшки, %` | Plaque Volume percentage |
-| `Просвет, мм2` | Vessel Lumen area |
-| `Syntax Score` | Complexity score for coronary artery disease |
+| `unstable_plaque` | Plaque Stability (1 = Unstable, 0 = Stable) |
+| `plaque_volume_percent` | Plaque Volume percentage |
+| `lumen_area` | Vessel Lumen area in mm² |
+| `syntax_score` | Complexity score for coronary artery disease |
 
 ### Target Variables (Adverse Outcomes)
 | Feature | Description |
 |---------|-------------|
-| `Госпитальная смерть` | Hospital death |
-| `Повторная реваскуляризация` | Repeat revascularization |
-| `ИМ` | Myocardial Infarction (IM) |
-| `Повторная госпитализация` | Repeated hospitalization |
+| `hospital_death` | Death occurring during hospitalization |
+| `repeated_revascularization` | Repeat revascularization procedure |
+| `myocardial_infarction_followup` | Myocardial Infarction at follow-up |
+| `repeated_hospitalization` | Repeated hospitalization |
 
 ## 🛠️ Tech Stack
 
@@ -104,7 +102,7 @@ The `source.csv` dataset contains 56 clinical records with the following key fea
 - **pre-commit** - Git hooks for code quality
 - **ruff** - High-performance Linter and Formatter
 
-## 🚀 Getting Start
+## 🚀 Getting Started
 
 ### Prerequisites
 
