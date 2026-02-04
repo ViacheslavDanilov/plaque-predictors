@@ -1,24 +1,110 @@
-# Plaque Predictors
+<div align="center">
 
-Association of Clinical Factors and Plaque Morphology with Adverse Cardiovascular Outcomes.
 
-## Project Structure
+<img src=".assets/logo.png" width="200" alt="Plaque Predictors Logo">
+
+# 🫀 Plaque Predictors: Cardiac Risk Analysis
+
+[![Python 3.13](https://img.shields.io/badge/Python-3.13-blue.svg)](https://www.python.org/downloads/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178c6.svg)](https://www.typescriptlang.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.128-009688.svg)](https://fastapi.tiangolo.com/)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black.svg)](https://nextjs.org/)
+[![pandas](https://img.shields.io/badge/pandas-3.0-150458.svg?logo=pandas&logoColor=white)](https://pandas.pydata.org/)
+
+**Association of clinical factors and plaque morphology with adverse cardiovascular outcomes.**
+
+</div>
+
+## 📋 Overview
+
+This project is a research-focused prototype designed to analyze the relationship between clinical patient profiles and coronary plaque characteristics. By identifying key morphological markers (such as plaque volume and stability) alongside clinical history, the system aims to highlight potential predictors of adverse cardiovascular events.
+
+## 🎯 Problem Statement
+
+The goal is to provide a tool for cardiac risk stratification by analyzing:
+1.  **Clinical-Morphological Correlation**: How clinical data (Diabetes, Hypertension, etc.) relates to the physical state of coronary plaques.
+2.  **Adverse Outcome Prediction**: Identifying which combinations of clinical and morphological features lead to a higher probability of events like myocardial infarction, repeat revascularization, or hospital death.
+
+## 📁 Project Structure
 
 ```
 plaque-predictors/
-├── backend/          # FastAPI backend (Python)
-│   ├── src/          # Source code
-│   ├── data/         # Data files (contains source.csv)
-│   ├── models/       # ML models
-│   ├── notebooks/    # Jupyter notebooks
-│   └── scripts/      # Utility scripts
-├── frontend/         # Next.js frontend (TypeScript)
-│   ├── src/app/      # App router pages
-│   └── public/       # Static assets
-└── pyproject.toml    # UV workspace config
+├── backend/                        # 🐍 Python Backend (UV workspace member)
+│   ├── src/plaque_predictors/      # FastAPI application
+│   │   ├── __init__.py
+│   │   └── main.py                 # API endpoints
+│   ├── models/                     # Trained ML model artifacts
+│   ├── notebooks/                  # Jupyter notebooks (EDA, experiments)
+│   ├── scripts/                    # Training & preprocessing scripts
+│   ├── data/                       # Datasets
+│   │   └── source.csv              # Primary dataset (56 records)
+│   └── pyproject.toml              # Backend dependencies
+│
+├── frontend/                       # ⚛️ Next.js Frontend
+│   ├── src/app/
+│   │   ├── layout.tsx
+│   │   ├── page.tsx
+│   │   └── globals.css
+│   └── package.json
+│
+├── pyproject.toml                  # UV workspace definition
+├── uv.lock                         # Lockfile
+├── .pre-commit-config.yaml         # Code quality hooks
+└── README.md
 ```
 
-## Quick Start
+## 📊 Dataset
+
+The `source.csv` dataset contains 56 clinical records with the following key features:
+
+### Clinical Data
+| Feature | Description |
+|---------|-------------|
+| `пол` | Gender (м/ж) |
+| `Возраст` | Age |
+| `Стенокардия ФК` | Angina Functional Class |
+| `ПИКС` | Post-myocardial infarction syndrome |
+| `МФА` | Multi-focal atherosclerosis |
+| `СД` | Diabetes Mellitus |
+| `АГ` | Hypertension |
+| `Холестерин` | Cholesterol levels |
+
+### Plaque Morphology
+| Feature | Description |
+|---------|-------------|
+| `Нестабильная бляшка` | Plaque Stability (1 = Unstable, 0 = Stable) |
+| `Объем бляшки, %` | Plaque Volume percentage |
+| `Просвет, мм2` | Vessel Lumen area |
+| `Syntax Score` | Complexity score for coronary artery disease |
+
+### Target Variables (Adverse Outcomes)
+| Feature | Description |
+|---------|-------------|
+| `Госпитальная смерть` | Hospital death |
+| `Повторная реваскуляризация` | Repeat revascularization |
+| `ИМ` | Myocardial Infarction (IM) |
+| `Повторная госпитализация` | Repeated hospitalization |
+
+## 🛠️ Tech Stack
+
+### Backend
+- **Python 3.13+**
+- **FastAPI** - High-performance web framework
+- **Pydantic** - Data validation
+- **pandas** - Data manipulation and analysis
+
+### Frontend
+- **Next.js 16** - React framework with App Router
+- **TypeScript** - Type-safe JavaScript
+- **Tailwind CSS 4** - Modern CSS framework
+
+### Development
+- **uv** - Extremely fast Python package manager
+- **pnpm** - Efficient Node.js package manager
+- **pre-commit** - Git hooks for code quality
+- **ruff** - High-performance Linter and Formatter
+
+## 🚀 Getting Start
 
 ### Prerequisites
 
@@ -27,34 +113,38 @@ plaque-predictors/
 - [uv](https://docs.astral.sh/uv/)
 - [pnpm](https://pnpm.io/)
 
-### Backend
+### Installation
 
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/[your-username]/plaque-predictors.git
+    cd plaque-predictors
+    ```
+
+2.  **Install Python dependencies:**
+    ```bash
+    uv sync
+    ```
+
+3.  **Install frontend dependencies:**
+    ```bash
+    cd frontend
+    pnpm install
+    cd ..
+    ```
+
+### Running the Application
+
+**Backend (FastAPI):**
 ```bash
-# Install dependencies
-uv sync --dev
-
-# Run development server
 uv run uvicorn plaque_predictors.main:app --reload
 ```
+API will be available at: http://localhost:8000
+API docs at: http://localhost:8000/docs
 
-### Frontend
-
+**Frontend (Next.js):**
 ```bash
 cd frontend
-
-# Install dependencies
-pnpm install
-
-# Run development server
 pnpm dev
 ```
-
-## Development
-
-```bash
-# Install pre-commit hooks
-uv run pre-commit install
-
-# Run pre-commit on all files
-uv run pre-commit run --all-files
-```
+Frontend will be available at: http://localhost:3000
