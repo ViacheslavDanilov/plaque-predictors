@@ -20,8 +20,7 @@ pnpm-lock.yaml
 .env*.local
 
 # Data & Models
-backend/data/*.csv
-!backend/data/source.csv
+!backend/data/*.csv
 backend/models/*.joblib
 backend/models/*.pkl
 
