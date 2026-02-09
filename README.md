@@ -81,14 +81,14 @@ plaque-predictors/
 Task 1: Clinical data -> plaque morphology
 - `X`: `gender`, `age`, `angina_functional_class`, `post_infarction_cardiosclerosis`, `multifocal_atherosclerosis`, `diabetes_mellitus`, `copd_asthma`, `hypertension`, `cholesterol_level`, `bmi`, `lvef_percent`
 - `y`:
-- `unstable_plaque` (classification)
-- `plaque_volume_percent` (regression)
-- `lumen_area` (regression)
+  - `unstable_plaque` (classification)
+  - `plaque_volume_percent` (regression)
+  - `lumen_area` (regression)
 
 Task 2: Adverse outcome prediction
 - `X`: Task 1 clinical features + `unstable_plaque`, `plaque_volume_percent`, `lumen_area`, `ffr`, `syntax_score`
-- `y`: `adverse_outcome` (classification, derived target in `features.csv`)
-- Definition: `1` if any of `hospital_death`, `stent_thrombosis`, `hospital_mi`, `stroke_tia`, `stroke`, `repeated_hospitalization`, `repeated_revascularization`, `myocardial_infarction_followup` equals `1`; else `0`.
+- `y`:
+  - `adverse_outcome` (classification, derived target in `features.csv`)
 
 ## 🛠️ Tech Stack
 
